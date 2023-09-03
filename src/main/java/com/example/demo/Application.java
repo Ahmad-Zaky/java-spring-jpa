@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
@@ -10,4 +12,17 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    @Bean
+    CommandLineRunner commandLineRunner(StudentRepository studentRepository) {
+        return args -> {
+            Student ahmed = new Student(
+                "ahmed", 
+                "zaky",
+                "ahmed.zaky@email.com",
+                29
+            );
+
+            studentRepository.save(ahmed);
+        };
+    }
 }
